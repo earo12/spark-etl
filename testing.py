@@ -23,3 +23,12 @@ sql = """SELECT CD_EMPRESA,
 FROM PRV03_REGLAS_PRV_SUC""" # --- ESTE CAMPO VARIA DEPENDIENDO DEL ETL --- #
 
 df = Spark.get_oracle_table(sql)
+
+# COMMAND ----------
+
+# --------------------------------------------------------- #
+# Si no hay registros en la tabla origen, el job se detiene #
+# --------------------------------------------------------- #
+
+if (df.isEmpty()):
+  raise Exception('No se obtuvieron nuevos registros de la tabla origen')
