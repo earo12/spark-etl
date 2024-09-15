@@ -36,3 +36,8 @@ if (df.isEmpty()):
 # COMMAND ----------
 
 df.write.format("delta").mode('overwrite').option("overwriteSchema", "true").saveAsTable('main.landing.prv03_reglas_prv_suc')
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC OPTIMIZE main.landing.prv03_reglas_prv_suc;
