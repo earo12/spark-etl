@@ -32,3 +32,7 @@ df = Spark.get_oracle_table(sql)
 
 if (df.isEmpty()):
   raise Exception('No se obtuvieron nuevos registros de la tabla origen')
+
+# COMMAND ----------
+
+df.write.format("delta").mode('overwrite').option("overwriteSchema", "true").saveAsTable('main.landing.prv03_reglas_prv_suc')
